@@ -33,7 +33,8 @@ export function ForgotPasswordFlow({ userType, backHref }: ForgotPasswordFlowPro
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch("http://localhost:8000/auth/password-reset/request", {
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+      const res = await fetch(`${API_URL}/auth/password-reset/request`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, user_type: userType }),
@@ -54,7 +55,8 @@ export function ForgotPasswordFlow({ userType, backHref }: ForgotPasswordFlowPro
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch("http://localhost:8000/auth/password-reset/verify", {
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+      const res = await fetch(`${API_URL}/auth/password-reset/verify`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, user_type: userType, otp }),
@@ -79,7 +81,8 @@ export function ForgotPasswordFlow({ userType, backHref }: ForgotPasswordFlowPro
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch("http://localhost:8000/auth/password-reset/update", {
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+      const res = await fetch(`${API_URL}/auth/password-reset/update`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ 
