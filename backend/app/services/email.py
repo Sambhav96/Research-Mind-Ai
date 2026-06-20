@@ -57,8 +57,8 @@ async def send_password_reset_otp(email: str, otp_code: str) -> dict[str, Any] |
     msg.add_alternative(html_content, subtype="html")
 
     try:
-        # Send synchronously, but fast enough for BackgroundTasks
-        with smtplib.SMTP(settings.smtp_server, settings.smtp_port) as server:
+        # Send synchronously, but fast enough for BackgroundTasks with a strict timeout
+        with smtplib.SMTP(settings.smtp_server, settings.smtp_port, timeout=5) as server:
             server.starttls()
             server.login(username, password)
             server.send_message(msg)
@@ -101,7 +101,7 @@ async def send_password_changed_success(email: str) -> dict[str, Any] | None:
     msg.add_alternative(html_content, subtype="html")
 
     try:
-        with smtplib.SMTP(settings.smtp_server, settings.smtp_port) as server:
+        with smtplib.SMTP(settings.smtp_server, settings.smtp_port, timeout=5) as server:
             server.starttls()
             server.login(username, password)
             server.send_message(msg)
