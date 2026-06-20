@@ -1,0 +1,82 @@
+[
+  {
+    "id": "f1",
+    "front": "What is the primary objective of using data mining in the medical healthcare field, as discussed in the paper?",
+    "back": "The main aim is to utilize data mining techniques to predict the occurrence of diseases by extracting new patterns and gaining knowledge from large datasets. This process often involves the use of machine learning and database management tools.",
+    "topic": "Data Mining in Healthcare",
+    "source_document": "Paper1.pdf",
+    "page_reference": "p.1"
+  },
+  {
+    "id": "f2",
+    "front": "Define data mining in the context of disease prediction.",
+    "back": "Data mining is a process within computer science that uses existing medical data to predict diseases. It involves discovering and analyzing different data patterns from large raw datasets to extract relevant information, combining machine learning, statistics, and database systems.",
+    "topic": "Data Mining Definition",
+    "source_document": "Paper1.pdf",
+    "page_reference": "pp.1-2"
+  },
+  {
+    "id": "f3",
+    "front": "What are the key benefits of applying data mining in healthcare?",
+    "back": "Data mining in healthcare offers several benefits, including the detection of frauds and abuses, assisting physicians in identifying the best treatment for specific diseases, producing fast analysis reports, improving operational efficiency, and reducing operational costs.",
+    "topic": "Benefits of Data Mining",
+    "source_document": "Paper1.pdf",
+    "page_reference": "p.2"
+  },
+  {
+    "id": "f4",
+    "front": "What are some disadvantages or challenges associated with data mining in healthcare?",
+    "back": "Disadvantages of data mining in healthcare include problems related to data ownership, privacy concerns, and security issues for human data administration. These challenges require careful consideration in system implementation.",
+    "topic": "Challenges in Data Mining",
+    "source_document": "Paper1.pdf",
+    "page_reference": "p.2"
+  },
+  {
+    "id": "f5",
+    "front": "According to the 'Data Mining Technique and Applications' paper, what are the logical process steps involved in extracting structured data?",
+    "back": "The logical process involves three main steps: exploration, pattern identification, and deployment. Exploration includes analyzing and transforming data until prescribed patterns are obtained, which are then identified and deployed using various data mining techniques.",
+    "topic": "Data Mining Methodology",
+    "source_document": "Paper1.pdf",
+    "page_reference": "p.2"
+  },
+  {
+    "id": "f6",
+    "front": "List some of the various algorithms and techniques commonly used in data mining for health prediction.",
+    "back": "Common data mining algorithms and techniques include Classification, Clustering, Regression, Artificial Intelligence, Neural Networks, Association Rules, and Decision Trees. K-means clustering is specifically mentioned as a technique that can be used to improve the accuracy of disease prediction.",
+    "topic": "Data Mining Algorithms",
+    "source_document": "Paper1.pdf",
+    "page_reference": "p.2"
+  },
+  {
+    "id": "f7",
+    "front": "What are the primary tasks involved in implementing a smart health prediction project using machine learning?",
+    "back": "The primary tasks for implementing such a project include selecting the domain, carefully choosing the target data, performing necessary data preprocessing, obtaining the desired knowledge from the processed data, and finally conducting a comprehensive evaluation.",
+    "topic": "Project Implementation",
+    "source_document": "Paper1.pdf",
+    "page_reference": "p.2"
+  },
+  {
+    "id": "f8",
+    "front": "Briefly describe the Naive Bayes algorithm's role and some of its operational steps in disease prediction.",
+    "back": "The Naive Bayes algorithm is utilized for disease prediction, with its formulation and working explained in the context of splitting data into training and target sets. Operational steps can include the division of segments and comparing characters of patterns until a match occurs.",
+    "topic": "Naive Bayes Algorithm",
+    "source_document": "Paper1.pdf",
+    "page_reference": "pp.1-2"
+  },
+  {
+    "id": "f9",
+    "front": "What is the ID3 algorithm and how is it used in a General Disease Prediction System (GDPS)?",
+    "back": "ID3 stands for Iterator Dichotomiser 3. In a General Disease Prediction System (GDPS), the ID3 algorithm is a special algorithm used by the admin module for training datasets. Its purpose is to create a disease prediction model by generating decision trees.",
+    "topic": "ID3 Algorithm",
+    "source_document": "Paper1.pdf",
+    "page_reference": "p.2"
+  },
+  {
+    "id": "f10",
+    "front": "What are some typical modules or functionalities found in a Smart E-Health Prediction System?",
+    "back": "A Smart E-Health Prediction System typically includes various modules such as a login for patient and doctor authentication, a disease prediction functionality that gathers symptoms from user input, and a doctor searching feature to find medical professionals.",
+    "topic": "E-Health System Architecture",
+    "source_document": "Paper1.pdf",
+    "page_reference": "p.1"
+  }
+]

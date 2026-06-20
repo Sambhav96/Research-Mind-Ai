@@ -1,0 +1,5 @@
+2026-06-01T18:51:03+0530 INFO uvicorn.error Started server process [7492]
+2026-06-01T18:51:03+0530 INFO uvicorn.error Waiting for application startup.
+2026-06-01T18:51:03+0530 INFO scholarmind.app Application startup
+2026-06-01T18:51:11+0530 INFO uvicorn.error Application startup complete.
+2026-06-01T18:51:11+0530 INFO uvicorn.error Uvicorn running on http://0.0.0.0:8002 (Press CTRL+C to quit)

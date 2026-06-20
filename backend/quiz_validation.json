@@ -1,0 +1,132 @@
+[
+  {
+    "id": "q1",
+    "question": "What are the eight functional subsystems integrated into the IoT-Based Smart Traffic Management System Simulation?",
+    "options": [
+      "Virtual traffic sensors, simulation engine, adaptive signal logic, emergency override, alerts-and-logging, analytics module, FastAPI backend, and React-based interactive dashboard.",
+      "Physical sensors, machine learning module, cloud platform, mobile application, data visualization, security module, payment gateway, and user authentication.",
+      "Traffic cameras, GPS tracking, vehicle-to-infrastructure communication, predictive analytics, remote control, incident detection, public transport integration, and pedestrian safety.",
+      "Inductive loops, central server, rule-based system, manual override, log management, performance metrics, web interface, and mobile alerts."
+    ],
+    "correct": 0,
+    "explanation": "Page 8 states: 'The system integrates eight functional subsystems: virtual traffic sensors, a tick-based simulation engine, an adaptive signal logic module, an emergency override mechanism, an alerts-and-logging subsystem, an analytics module, a FastAPI backend, and a React-based interactive dashboard.'",
+    "topic": "System Overview and Components"
+  },
+  {
+    "id": "q2",
+    "question": "According to the IoT Five-Layer Architecture Mapping, which layer is responsible for real-time visualization, alerts, and manual controls?",
+    "options": [
+      "Layer 5 \u2014 Business Intelligence",
+      "Layer 3 \u2014 Processing",
+      "Layer 4 \u2014 Application",
+      "Layer 2 \u2014 Network"
+    ],
+    "correct": 2,
+    "explanation": "Table 2 on Page 10, 'IoT Five-Layer Architecture Mapping', specifies 'Layer 4 \u2014 Application' as 'React / Next.js Dashboard Real-time visualization, alerts, manual controls, analytics'.",
+    "topic": "IoT Layer Architecture"
+  },
+  {
+    "id": "q3",
+    "question": "In the system's data flow, how often does the frontend retrieve the current state from the API and re-render the dashboard?",
+    "options": [
+      "Every 100ms",
+      "Every 500ms",
+      "Every 1 second",
+      "Every 2 seconds"
+    ],
+    "correct": 1,
+    "explanation": "Page 19, under '6.1 Data Flow', states: 'At the next polling cycle (every 500ms), the frontend retrieves the current state from the API and re-renders the dashboard.'",
+    "topic": "Working Principle - Data Flow"
+  },
+  {
+    "id": "q4",
+    "question": "What is the formula used for the priority scoring algorithm P(i) in Adaptive Mode?",
+    "options": [
+      "P(i) = \u03b1\u00b7VC + \u03b2\u00b7WT + \u03b3\u00b7CL",
+      "P(i) = \u03b1\u00b7VC - \u03b2\u00b7WT + \u03b3\u00b7CL",
+      "P(i) = \u03b1\u00b7VC \u00d7 \u03b2\u00b7WT \u00f7 \u03b3\u00b7CL",
+      "P(i) = \u03b1\u00b7VC + \u03b2\u00b7WT - \u03b3\u00b7CL"
+    ],
+    "correct": 0,
+    "explanation": "Page 19, under '6.2 Decision Logic', states: 'Adaptive Mode: The priority scoring algorithm P(i) = \u03b1\u00b7VC + \u03b2\u00b7WT + \u03b3\u00b7CL runs autonomously every tick'. This is also shown in Figure 3 on Page 16.",
+    "topic": "Adaptive Signal Logic"
+  },
+  {
+    "id": "q5",
+    "question": "According to the adaptive signal control flowchart, under what condition is a lane automatically forced to the next green cycle regardless of its priority score?",
+    "options": [
+      "If any lane has been continuously red for more than 2\u00d7MAX_GREEN ticks.",
+      "If any lane has been continuously red for more than 3\u00d7MAX_GREEN ticks.",
+      "If any lane has been continuously red for more than 4\u00d7MAX_GREEN ticks.",
+      "If any lane has been continuously red for more than 5\u00d7MAX_GREEN ticks."
+    ],
+    "correct": 1,
+    "explanation": "Page 16, in the description of the algorithm and Figure 3, states: 'The algorithm also incorporates a fairness timer: if any lane has been continuously red for more than 3\u00d7MAX_GREEN ticks, it is automatically forced to the next green cycle regardless of its priority score.'",
+    "topic": "Adaptive Signal Logic - Fairness Timer"
+  },
+  {
+    "id": "q6",
+    "question": "Which of the following is NOT mentioned as a potential replacement for virtual sensors in the future scope for hardware integration?",
+    "options": [
+      "Physical inductive loop detectors",
+      "Cameras",
+      "Raspberry Pi-based ultrasonic sensors",
+      "Lidar sensors"
+    ],
+    "correct": 3,
+    "explanation": "Page 24, under '10. Future Scope', states: 'Hardware Integration: Replace virtual sensors with physical inductive loop detectors, cameras, or Raspberry Pi-based ultrasonic sensors.' Lidar sensors are not mentioned.",
+    "topic": "Future Scope - Hardware Integration"
+  },
+  {
+    "id": "q7",
+    "question": "Which API endpoint is used to switch between TIMED, ADAPTIVE, and MANUAL operating modes?",
+    "options": [
+      "POST /api/simulation/start",
+      "POST /api/simulation/pause",
+      "POST /api/simulation/mode",
+      "GET /api/simulation/state"
+    ],
+    "correct": 2,
+    "explanation": "Table 6 on Page 15 lists 'POST /api/simulation/mode' with the description 'Switches between TIMED, ADAPTIVE, and MANUAL modes'.",
+    "topic": "API Endpoints"
+  },
+  {
+    "id": "q8",
+    "question": "Which of the following is identified as a fundamental limitation of traditional fixed-timer traffic signal systems?",
+    "options": [
+      "High installation cost",
+      "Inflexibility",
+      "Complex maintenance requirements",
+      "Limited scalability"
+    ],
+    "correct": 1,
+    "explanation": "Page 5 identifies three fundamental limitations: 'Inflexibility: Signals do not respond to actual traffic density...', 'Emergency Blindness: There is no mechanism...', and 'Zero Observability: Fixed systems provide no real-time data...'. Inflexibility is one of them.",
+    "topic": "Problem Statement"
+  },
+  {
+    "id": "q9",
+    "question": "What was the reported reduction in average waiting time achieved by the adaptive IoT-based approach compared to the fixed-timer baseline?",
+    "options": [
+      "15% reduction",
+      "20% reduction",
+      "32% reduction",
+      "45% reduction"
+    ],
+    "correct": 2,
+    "explanation": "Page 22, under 'Evaluation Summary', states: 'The 32% reduction in average waiting time demonstrates the core value proposition of demand-responsive signal control.'",
+    "topic": "Results and Performance Evaluation"
+  },
+  {
+    "id": "q10",
+    "question": "According to the 'Traffic Simulation Parameters' table, what is the coefficient for the priority weight for accumulated wait (Weight Beta)?",
+    "options": [
+      "0.5",
+      "0.3",
+      "0.2",
+      "0.8"
+    ],
+    "correct": 1,
+    "explanation": "Table 5 on Page 13, 'Traffic Simulation Parameters', lists 'Weight Beta (waiting time)' with a value of '0.3 coefficient'.",
+    "topic": "System Parameters"
+  }
+]

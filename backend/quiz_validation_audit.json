@@ -1,0 +1,8 @@
+{
+  "error": {
+    "code": "http_error",
+    "message": "No content found for the provided document(s).",
+    "details": null,
+    "request_id": null
+  }
+}
