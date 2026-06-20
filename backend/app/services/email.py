@@ -1,44 +1,38 @@
-"""Email service using Gmail SMTP."""
+"""Email service using Brevo HTTP API."""
 
 from __future__ import annotations
 
 import logging
-import smtplib
-from email.message import EmailMessage
 from typing import Any
+
+import httpx
 
 from app.core.config import get_settings
 
 logger = logging.getLogger(__name__)
 
-def _get_smtp_settings() -> tuple[str, str] | None:
-    """Return SMTP credentials if present."""
+def _get_api_key() -> str | None:
+    """Return Brevo API key (which is stored in SMTP_PASSWORD)."""
     settings = get_settings()
-    if not settings.smtp_username or not settings.smtp_password:
-        logger.warning("SMTP_USERNAME or SMTP_PASSWORD is not set. Emails will not be sent.")
+    if not settings.smtp_password:
+        logger.warning("SMTP_PASSWORD (Brevo API Key) is not set. Emails will not be sent.")
         return None
-    return settings.smtp_username, settings.smtp_password
+    return settings.smtp_password
 
 async def send_password_reset_otp(email: str, otp_code: str) -> dict[str, Any] | None:
-    """Send a password reset OTP email using Gmail SMTP."""
+    """Send a password reset OTP email using Brevo HTTP API."""
     settings = get_settings()
     
     if settings.environment != "production":
         logger.info(f"🔑 [DEV/TEST] OTP for {email} is: {otp_code}")
 
-    creds = _get_smtp_settings()
-    if not creds:
+    api_key = _get_api_key()
+    if not api_key:
         return None
 
-    username, password = creds
+    # Use the configured from email, fallback to a default if missing
+    from_email = settings.smtp_from_email or "noreply@researchmindai.com"
     subject = f"Your {settings.app_name} Password Reset Code"
-    
-    from_email = settings.smtp_from_email or username
-    
-    msg = EmailMessage()
-    msg["Subject"] = subject
-    msg["From"] = f"{settings.app_name} <{from_email}>"
-    msg["To"] = email
 
     html_content = f"""
     <html>
@@ -53,40 +47,47 @@ async def send_password_reset_otp(email: str, otp_code: str) -> dict[str, Any] |
       </body>
     </html>
     """
-    msg.set_content(f"Your OTP code is {otp_code}")
-    msg.add_alternative(html_content, subtype="html")
+
+    payload = {
+        "sender": {"name": settings.app_name, "email": from_email},
+        "to": [{"email": email}],
+        "subject": subject,
+        "htmlContent": html_content,
+        "textContent": f"Your OTP code is {otp_code}"
+    }
 
     try:
-        # Send synchronously, but fast enough for BackgroundTasks with a strict timeout
-        with smtplib.SMTP(settings.smtp_server, settings.smtp_port, timeout=5) as server:
-            server.starttls()
-            server.login(username, password)
-            server.send_message(msg)
+        async with httpx.AsyncClient(timeout=10.0) as client:
+            response = await client.post(
+                "https://api.brevo.com/v3/smtp/email",
+                json=payload,
+                headers={
+                    "api-key": api_key,
+                    "accept": "application/json",
+                    "content-type": "application/json"
+                }
+            )
+            response.raise_for_status()
             
-        logger.info(f"Password reset email sent to {email} via {settings.smtp_server}")
+        logger.info(f"Password reset email successfully sent to {email} via Brevo API")
         return {"status": "success"}
     except Exception as e:
-        logger.error(f"Failed to send email to {email}: {str(e)}")
+        logger.error(f"Failed to send email to {email} via Brevo API: {str(e)}")
+        if isinstance(e, httpx.HTTPStatusError):
+            logger.error(f"Brevo API Error Response: {e.response.text}")
         return None
 
 async def send_password_changed_success(email: str) -> dict[str, Any] | None:
-    """Send a success notification that the password was changed using Gmail SMTP."""
+    """Send a success notification that the password was changed using Brevo HTTP API."""
     settings = get_settings()
 
-    creds = _get_smtp_settings()
-    if not creds:
+    api_key = _get_api_key()
+    if not api_key:
         logger.info(f"[DEV] Password changed success email for {email}")
         return None
 
-    username, password = creds
+    from_email = settings.smtp_from_email or "noreply@researchmindai.com"
     subject = f"Your {settings.app_name} Password Has Been Changed"
-    
-    from_email = settings.smtp_from_email or username
-    
-    msg = EmailMessage()
-    msg["Subject"] = subject
-    msg["From"] = f"{settings.app_name} <{from_email}>"
-    msg["To"] = email
 
     html_content = f"""
     <html>
@@ -97,16 +98,31 @@ async def send_password_changed_success(email: str) -> dict[str, Any] | None:
       </body>
     </html>
     """
-    msg.set_content("Your password has been changed successfully.")
-    msg.add_alternative(html_content, subtype="html")
+
+    payload = {
+        "sender": {"name": settings.app_name, "email": from_email},
+        "to": [{"email": email}],
+        "subject": subject,
+        "htmlContent": html_content,
+        "textContent": "Your password has been changed successfully."
+    }
 
     try:
-        with smtplib.SMTP(settings.smtp_server, settings.smtp_port, timeout=5) as server:
-            server.starttls()
-            server.login(username, password)
-            server.send_message(msg)
+        async with httpx.AsyncClient(timeout=10.0) as client:
+            response = await client.post(
+                "https://api.brevo.com/v3/smtp/email",
+                json=payload,
+                headers={
+                    "api-key": api_key,
+                    "accept": "application/json",
+                    "content-type": "application/json"
+                }
+            )
+            response.raise_for_status()
             
         return {"status": "success"}
     except Exception as e:
-        logger.error(f"Failed to send success email to {email}: {str(e)}")
+        logger.error(f"Failed to send success email to {email} via Brevo API: {str(e)}")
+        if isinstance(e, httpx.HTTPStatusError):
+            logger.error(f"Brevo API Error Response: {e.response.text}")
         return None
