@@ -1,6 +1,13 @@
 "use client";
 
-import { Search, Command, Bell } from "lucide-react";
+import { Search, Command, Bell, Menu, Settings, CreditCard, FolderKanban, BarChart3, Highlighter } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuSeparator,
+} from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { useAppStore } from "@/stores/app-store";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -48,6 +55,37 @@ export function AppHeader({ title }: { title?: string }) {
     <header className="sticky top-0 z-30 flex h-14 items-center justify-between gap-4 border-b border-border/50 glass px-4 md:px-6">
       <div className="hidden md:block">
         <h1 className="text-base font-semibold">{displayTitle}</h1>
+      </div>
+
+      <div className="flex md:hidden items-center">
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" size="icon" className="-ml-2 mr-1" aria-label="Menu">
+              <Menu className="h-5 w-5" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="start" className="w-56 mt-2">
+            <div className="px-2 py-1.5 text-sm font-semibold">More</div>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem asChild>
+              <Link href="/workspaces"><FolderKanban className="mr-2 h-4 w-4"/>Workspaces</Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link href="/notes"><Highlighter className="mr-2 h-4 w-4"/>Notes</Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link href="/analytics"><BarChart3 className="mr-2 h-4 w-4"/>Analytics</Link>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem asChild>
+              <Link href="/settings"><Settings className="mr-2 h-4 w-4"/>Settings</Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link href="/billing"><CreditCard className="mr-2 h-4 w-4"/>Billing</Link>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+        <h1 className="text-base font-semibold truncate max-w-[140px]">{displayTitle}</h1>
       </div>
 
       <div className="flex flex-1 items-center justify-end gap-2 md:max-w-xl md:mx-auto">
