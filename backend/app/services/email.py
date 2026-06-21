@@ -17,7 +17,7 @@ def _get_api_key() -> str | None:
     if not settings.smtp_password:
         logger.warning("SMTP_PASSWORD (Brevo API Key) is not set. Emails will not be sent.")
         return None
-    return settings.smtp_password
+    return settings.smtp_password.strip()
 
 async def send_password_reset_otp(email: str, otp_code: str) -> dict[str, Any] | None:
     """Send a password reset OTP email using Brevo HTTP API."""
