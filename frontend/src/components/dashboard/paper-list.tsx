@@ -59,11 +59,10 @@ export const PaperList = memo(function PaperList({ papers, isLoading, error }: P
       {!isLoading && !error && papers?.length > 0 && (
         <div className="space-y-4">
           {(papers ?? []).map((paper, i) => (
-            <motion.div
+            <div
               key={paper.id}
-              initial={{ opacity: 0, x: -8 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: i * 0.06 }}
+              className="animate-in fade-in slide-in-from-left-2 duration-500 fill-mode-both"
+              style={{ animationDelay: `${i * 60}ms` }}
             >
               <Link
                 href={`/reader/${paper.id}`}
@@ -100,7 +99,7 @@ export const PaperList = memo(function PaperList({ papers, isLoading, error }: P
                 </div>
                 <ChevronRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
               </Link>
-            </motion.div>
+            </div>
           ))}
         </div>
       )}

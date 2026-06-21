@@ -8,12 +8,7 @@ import type { AnalyticsMetric } from "@/lib/api/analytics";
 
 export const MetricCard = memo(function MetricCard({ metric, index }: { metric: AnalyticsMetric; index: number }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.08 }}
-      className={metric.breakdown ? "relative z-10 hover:z-50" : ""}
-    >
+    <div className={metric.breakdown ? "relative z-10 hover:z-50 animate-in fade-in slide-in-from-bottom-4 duration-500 fill-mode-both" : "animate-in fade-in slide-in-from-bottom-4 duration-500 fill-mode-both"} style={{ animationDelay: `${index * 80}ms` }}>
       <GlowCard className="h-full">
         <div className="flex items-center gap-2">
           <p className="text-sm text-muted-foreground">{metric.label}</p>
@@ -50,6 +45,6 @@ export const MetricCard = memo(function MetricCard({ metric, index }: { metric: 
           <span className="text-3xl font-bold">{metric.value}</span>
         </div>
       </GlowCard>
-    </motion.div>
+    </div>
   );
 });
