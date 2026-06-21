@@ -2,7 +2,7 @@
   "name": "ResearchMind AI",
   "short_name": "ResearchMind",
   "description": "AI-powered research operating system",
-  "start_url": "/dashboard",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#030308",
   "theme_color": "#6366f1",
